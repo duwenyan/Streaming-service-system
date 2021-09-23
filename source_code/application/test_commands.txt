@@ -1,0 +1,156 @@
+**********login and register**********
+
+login,admin,admin
+register,disney,123abcA!,studio
+register,apv,123abcA!,stream
+
+**********create demo, studio and events**********
+
+create_demo,age_40_50,Viewers between 40 and 50,800
+create_demo,age_20_30,Viewers between 20 and 30,1500
+create_studio,disney,Walt Disney Animation Studios
+create_studio,universal,Universal Pictures
+create_studio,paramount,Paramount Pictures
+create_studio,warner,Warner Bros. Pictures
+create_studio,columbia,Columbia Pictures
+create_event,movie,Mulan,1998,88,disney,1000
+create_event,ppv,The Lion King,1994,88,disney,1020
+create_event,movie,The Godfather,1972,178,paramount,1100
+create_event,ppv,Titanic,1997,194,paramount,1400
+create_event,movie,Jurassic Park,1993,127,universal,1200
+create_event,ppv,Minions,2015,91,universal,1150
+create_event,movie,Joker,2019,122,warner,1500
+create_event,ppv,The Matrix,1999,136,warner,1700
+create_event,movie,Groundhog Day,1993,101,columbia,900
+create_event,ppv,Bad Boys,1995,119,columbia,1050
+display_events
+
+**********update events**********
+
+update_event,Mulan,1998,88,1300
+display_events
+
+**********create streaming services and update streaming service**********
+
+create_stream,apv,Amazon Prime Video,12
+create_stream,netflix,Netflix,10
+create_stream,apple,Apple TV Plus,15
+create_stream,hulu,Hulu,11
+update_stream,apv,Amazon Prime Video 1,15
+display_stream,apv
+
+**********offer movie and ppv and retract movie**********
+Also test when movie is watched, the movie can't be retracted and the lisence fee can't be changed. 
+Name of demo_group can be changed, but the number of accounts can't be changed. 
+In addition, the streaming service name can be changed but the subscription fee can't.
+
+offer_movie,apv,Mulan,1998
+offer_ppv,apv,Titanic,1997,5
+offer_movie,netflix,The Godfather,1972
+offer_ppv,netflix,The Lion King,1994,6
+offer_movie,apple,Jurassic Park,1993
+offer_ppv,apple,The Matrix,1999,3
+offer_movie,hulu,Groundhog Day,1993
+offer_ppv,hulu,Minions,2015,5
+offer_movie,netflix,Joker,2019
+offer_ppv,apv,Bad Boys,1995,4
+display_offers
+retract_movie,apv,Mulan,1998
+display_offers
+offer_movie,apv,Mulan,1998
+display_offers
+update_demo,age_40_50,Views between 41 and 50,900
+display_demo,age_40_50
+watch_event,age_40_50,30,apv,Mulan,1998
+retract_movie,apv,Mulan,1998
+update_event,Mulan,1998,88,1200
+display_demo,age_40_50
+update_demo,age_40_50,Views between 40 and 50,900
+display_demo,age_40_50
+update_demo,age_40_50,Views between 40 and 50,1000
+display_stream,apv
+update_stream,apv,Amazon Prime Video 2, 15
+display_stream,apv
+update_stream,apv,Amazon Prime Video 2,16
+
+**********a couple more transactions**********
+
+display_stream,apv
+display_studio,disney
+display_events
+display_offers
+display_time
+watch_event,age_40_50,40,netflix,The Godfather,1972
+display_demo,age_40_50
+watch_event,age_40_50,50,netflix,Joker,2019
+display_demo,age_40_50
+display_stream,netflix
+watch_event,age_20_30,20,hulu,Minions,2015
+display_demo,age_20_30
+display_stream,hulu
+watch_event,age_20_30,40,apple,Jurassic Park,1993
+display_demo,age_20_30
+display_stream,apple
+watch_event,age_20_30,30,apple,The Matrix,1999
+display_demo,age_20_30
+display_stream,apple
+watch_event,age_20_30,50,apple,The Matrix,1999
+display_demo,age_20_30
+display_stream,apple
+next_month
+display_stream,apple
+display_demo,age_20_30
+display_offers
+display_events
+logout
+
+**********login as apv**********
+
+login,apv,123abcA!
+help
+display_transactions
+display_demo,age_40_50
+display_demo,age_20_30
+display_stream,apv
+display_stream
+display_stream,netflix
+update_stream,apv,Amazon Prime Video 2, 18
+update_stream,netflix,Amazon Prime Video 2, 18
+display_stream
+offer_movie,netflix,The Godfather,1972
+offer_movie,apv,The Godfather,1972
+archive_transaction,2020,10
+display_transactions
+unarchive_transaction,2020,10
+display_transactions
+logout
+
+**********login as disney**********
+
+login,disney,123abcA!
+help
+change_password,123abcA!,456abcA!
+logout
+login,disney,456abcA! 
+create_event,movie,Starstruck,2010,90,disney,1200
+update_event,Starstruck,2010,90,1000
+update_event,The Godfather,1972,178,1100
+display_transactions
+logout
+
+**********demo for archivability**********
+the number at the end of the command defines if the user has an expiration date. If the number is 0 or blank, this user will stay in the system and won't be archived. If the number is 3, then the user will be archived after three months of registration.
+
+login,admin,admin
+register,qian,123abcA!,stream
+next_month
+register,zhang,123abcA!,studio,3
+next_month
+register,xie,123abcA!,stream,3
+next_month
+register,zhou,123abcA!,studio,3
+next_month
+register,du,123abcA!,stream,3
+next_month
+next_month
+display_users
